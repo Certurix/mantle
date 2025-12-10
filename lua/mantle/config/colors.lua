@@ -1,47 +1,47 @@
 Mantle.color_dark = {
-    header = Color(40, 40, 40), -- верхняя панель
-    header_text = Color(100, 100, 100), -- цвет элементов в заголовке
-    background = Color(25, 25, 25), -- фон
-    background_alpha = Color(25, 25, 25, 210), -- фон с прозрачностью
-    background_panelpopup = Color(20, 20, 20, 150), -- фон для DermaMenu
+    header = Color(40, 40, 40), -- top panel
+    header_text = Color(100, 100, 100), -- header element color
+    background = Color(25, 25, 25), -- background
+    background_alpha = Color(25, 25, 25, 210), -- background with transparency
+    background_panelpopup = Color(20, 20, 20, 150), -- DermaMenu background
 
-    button = Color(54, 54, 54), -- кнопка
-    button_shadow = Color(0, 0, 0, 25), -- тень кнопки для градиента
-    button_hovered = Color(60, 60, 62), -- кнопка при наведении
+    button = Color(54, 54, 54), -- button
+    button_shadow = Color(0, 0, 0, 25), -- button shadow for gradient
+    button_hovered = Color(60, 60, 62), -- button on hover
 
-    category = Color(50, 50, 50), -- категория
-    category_opened = Color(50, 50, 50, 0), -- категория открыта
+    category = Color(50, 50, 50), -- category
+    category_opened = Color(50, 50, 50, 0), -- category opened
 
-    theme = Color(106, 108, 197), -- тема интерфейса
+    theme = Color(106, 108, 197), -- interface theme
 
-    panel = { -- варианты цветов для панели
+    panel = { -- panel color variants
         Color(60, 60, 60),
         Color(50, 50, 50),
         Color(80, 80, 80)
     },
 
-    toggle = Color(56, 56, 56), -- тумблер
+    toggle = Color(56, 56, 56), -- toggle
 
-    focus_panel = Color(46, 46, 46, 200), -- универсальный цвет для элементов
-    hover = Color(60, 65, 80), -- универсальное выделение
+    focus_panel = Color(46, 46, 46, 200), -- universal color for elements
+    hover = Color(60, 65, 80), -- universal highlight
 
-    window_shadow = Color(0, 0, 0, 100), -- тень окна
+    window_shadow = Color(0, 0, 0, 100), -- window shadow
 
     gray = Color(150, 150, 150, 220),
     text = Color(255, 255, 255)
 }
-Mantle.color_dark.panel_alpha = { -- прозрачные панели
+Mantle.color_dark.panel_alpha = { -- transparent panels
     ColorAlpha(Mantle.color_dark.panel[1], 150),
     ColorAlpha(Mantle.color_dark.panel[2], 150),
     ColorAlpha(Mantle.color_dark.panel[3], 150)
 }
 
--- Тёмная палитра (монотонная)
+-- Dark palette (monotone)
 
 Mantle.color_dark_mono = table.Copy(Mantle.color_dark)
 Mantle.color_dark_mono.theme = Color(121, 121, 121)
 
--- Светлая палитра
+-- Light palette
 Mantle.color_light = {
     header = Color(240, 240, 240),
     header_text = Color(150, 150, 150),
@@ -80,7 +80,7 @@ Mantle.color_light.panel_alpha = {
     ColorAlpha(Mantle.color_light.panel[3], 120)
 }
 
--- Синяя палитра
+-- Blue palette
 Mantle.color_blue = {
     header = Color(36, 48, 66),
     header_text = Color(109, 129, 159),
@@ -119,7 +119,7 @@ Mantle.color_blue.panel_alpha = {
     ColorAlpha(Mantle.color_blue.panel[3], 110)
 }
 
--- Красная палитра
+-- Red palette
 Mantle.color_red = {
     header = Color(54, 36, 36),
     header_text = Color(159, 109, 109),
@@ -158,7 +158,7 @@ Mantle.color_red.panel_alpha = {
     ColorAlpha(Mantle.color_red.panel[3], 110)
 }
 
--- Зелёная палитра
+-- Green palette
 Mantle.color_green = {
     header = Color(36, 54, 40),
     header_text = Color(109, 159, 109),
@@ -197,7 +197,7 @@ Mantle.color_green.panel_alpha = {
     ColorAlpha(Mantle.color_green.panel[3], 110)
 }
 
--- Оранжевая палитра
+-- Orange palette
 Mantle.color_orange = {
     header = Color(70, 35, 10),
     header_text = Color(250, 230, 210),
@@ -236,7 +236,7 @@ Mantle.color_orange.panel_alpha = {
     ColorAlpha(Mantle.color_orange.panel[3], 120)
 }
 
--- Фиолетовая палитра
+-- Purple palette
 Mantle.color_purple = {
     header = Color(40, 36, 56),
     header_text = Color(150, 140, 180),
@@ -275,7 +275,7 @@ Mantle.color_purple.panel_alpha = {
     ColorAlpha(Mantle.color_purple.panel[3], 150)
 }
 
--- Кофейная палитра
+-- Coffee palette
 Mantle.color_coffee = {
     header = Color(67, 48, 36),
     header_text = Color(210, 190, 170),
@@ -315,7 +315,7 @@ Mantle.color_coffee.panel_alpha = {
     ColorAlpha(Mantle.color_coffee.panel[3], 110)
 }
 
--- Ледяная палитра
+-- Ice palette
 Mantle.color_ice = {
     header = Color(190, 225, 250),
     header_text = Color(68, 104, 139),
@@ -354,7 +354,7 @@ Mantle.color_ice.panel_alpha = {
     ColorAlpha(Mantle.color_ice.panel[3], 120)
 }
 
--- Винная палитра
+-- Wine palette
 Mantle.color_wine = {
     header = Color(59, 42, 53),
     header_text = Color(246, 242, 246),
@@ -393,7 +393,7 @@ Mantle.color_wine.panel_alpha = {
     ColorAlpha(Mantle.color_wine.panel[3], 150)
 }
 
--- Фиалковая палитра
+-- Violet palette
 Mantle.color_violet = {
     header = Color(49, 50, 68),
     header_text = Color(238, 244, 255),
@@ -432,7 +432,7 @@ Mantle.color_violet.panel_alpha = {
     ColorAlpha(Mantle.color_violet.panel[3], 150)
 }
 
--- Моховая палитра
+-- Moss palette
 Mantle.color_moss = {
     header = Color(42, 50, 36),
     header_text = Color(232, 244, 235),
@@ -471,7 +471,7 @@ Mantle.color_moss.panel_alpha = {
     ColorAlpha(Mantle.color_moss.panel[3], 150)
 }
 
--- Коралловая палитра
+-- Coral palette
 Mantle.color_coral = {
     header = Color(52, 32, 36),
     header_text = Color(255, 243, 242),

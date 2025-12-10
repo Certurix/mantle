@@ -134,10 +134,10 @@ function PANEL:Paint(w, h)
     local valueFont = 'Fated.16'
     local minmaxPadY = 12
 
-    -- Текст сверху
+    -- Text above
     draw.SimpleText(self.text, textFont, padX, padTop, Mantle.color.text)
 
-    -- Линия
+    -- Line
     local barStart = padX + handleW / 2 + 10
     local barEnd = w - padX - handleW / 2 - 20
     local barW = math.max(0, barEnd - barStart)
@@ -147,7 +147,7 @@ function PANEL:Paint(w, h)
     progress = math.Clamp(progress, 0, 1)
     local activeW = barW * progress
 
-    -- Тень под линией
+    -- Shadow under line
     if Mantle.ui.convar.depth_ui then
         RNDX().Rect(barStart, barY, barW, barH)
             :Rad(barR)
@@ -158,11 +158,11 @@ function PANEL:Paint(w, h)
         :Draw()
     end
 
-    -- Фон линии
+    -- Line background
     RNDX.Draw(barR, barStart, barY, barW, barH, Mantle.color.focus_panel)
     RNDX.Draw(barR, barStart, barY, barW, barH, Mantle.color.button_shadow)
 
-    -- Активная линия
+    -- Active line
     self.smoothPos = Mantle.func.approachExp(self.smoothPos or 0, activeW, 14, ft)
     if math.abs(self.smoothPos - activeW) < 0.5 then self.smoothPos = activeW end
 
@@ -171,7 +171,7 @@ function PANEL:Paint(w, h)
     local handleX = barStart + self.smoothPos
     local handleY = barY + barH / 2
 
-    -- Тень под ручкой
+    -- Shadow under handle
     RNDX.DrawShadows(handleR, handleX - handleW / 2, handleY - handleH / 2, handleW, handleH, Mantle.color.window_shadow, 3, 10)
 
     local targetAlpha = self.dragging and 100 or 255
@@ -179,14 +179,14 @@ function PANEL:Paint(w, h)
     if math.abs(self._dragAlpha - targetAlpha) < 1 then self._dragAlpha = targetAlpha end
     local colorText = Color(Mantle.color.theme.r, Mantle.color.theme.g, Mantle.color.theme.b, math.floor(self._dragAlpha))
 
-    -- Ручка
+    -- Handle
     RNDX.Draw(handleR, handleX - handleW / 2, handleY - handleH / 2, handleW, handleH, colorText)
 
-    -- Значение справа от линии
+    -- Value to the right of line
     local valText = (self.decimals > 0) and tostring(self.value) or tostring(self.value)
     draw.SimpleText(valText, valueFont, barEnd + handleW / 2 + 4, barY + barH / 2, colorText, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
-    -- min/max под линией
+    -- min/max under line
     draw.SimpleText(self.min_value, minmaxFont, barStart, barY + barH + minmaxPadY - 4, Mantle.color.gray, TEXT_ALIGN_LEFT)
     draw.SimpleText(self.max_value, minmaxFont, barEnd, barY + barH + minmaxPadY - 4, Mantle.color.gray, TEXT_ALIGN_RIGHT)
 end

@@ -3,7 +3,7 @@ local PANEL = {}
 function PANEL:Init()
     self:SetTall(30)
     self:DockPadding(0, 36, 0, 0)
-    self.name = 'Категория'
+    self.name = 'Category'
     self.bool_opened = false
     self.bool_header_centered = false
     self.content_size = 0

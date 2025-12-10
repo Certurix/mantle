@@ -3,7 +3,7 @@ local errorMat = Mat('error')
 local WebImageCache = {}
 
 --[[
-    Функция для скачивания материала по ссылке и его кэшированного использования
+    Function for downloading material from URL and cached usage
 ]]--
 function http.DownloadMaterial(url, path, callback, retry_count)
     if WebImageCache[url] then

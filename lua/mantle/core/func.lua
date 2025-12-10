@@ -52,8 +52,8 @@ local function CreateFunc()
     local mat_blur = Material('pp/blurscreen')
 
     --[[
-        Отрисовка размытия у панели.
-        Применяется в функциях отрисовки (например Paint)
+        Render panel blur.
+        Applied in rendering functions (e.g. Paint)
     ]]--
     function Mantle.func.blur(panel)
         local x, y = panel:LocalToScreen(0, 0)
@@ -81,7 +81,7 @@ local function CreateFunc()
     }
 
     --[[
-        Отрисовка градиента
+        Render gradient
     ]]--
     function Mantle.func.gradient(_x, _y, _w, _h, direction, color_shadow, radius, flags)
         radius = radius and radius or 0
@@ -96,8 +96,8 @@ local function CreateFunc()
     Mantle.func.h_save = {}
 
     --[[
-        Получение относительной ширины (на основе 1920)
-        При указании Mantle.func.w(20), 20 будет менять в меньшую сторону или большую в зависимости от ширины экрана
+        Get relative width (based on 1920)
+        When specifying Mantle.func.w(20), 20 will scale smaller or larger depending on screen width
     ]]--
     function Mantle.func.w(px)
         if !Mantle.func.w_save[px] then
@@ -108,7 +108,7 @@ local function CreateFunc()
     end
 
     --[[
-        Получение относительной высоты (на основе 1080)
+        Get relative height (based on 1080)
     ]]--
     function Mantle.func.h(px)
         if !Mantle.func.h_save[px] then
@@ -143,8 +143,8 @@ local function CreateFunc()
     end
 
     --[[
-        Отрисовка текста на Entity.
-        Применяется в функциях отрисовки (например ENT:Draw)
+        Draw text on Entity.
+        Applied in rendering functions (e.g. ENT:Draw)
     ]]--
     function Mantle.func.draw_ent_text(ent, text, posY)
         local distSqr = EyePos():DistToSqr(ent:GetPos())
@@ -261,7 +261,7 @@ local function CreateFunc()
     end
 
     --[[
-        Плавное изменение цвета с одного на другой
+        Smooth color transition from one to another
     ]]--
     function Mantle.func.LerpColor(frac, col1, col2)
         local ft = FrameTime() * frac
@@ -275,7 +275,7 @@ local function CreateFunc()
     end
 
     --[[
-        Функции анимации
+        Animation functions
     ]]--
     function Mantle.func.approachExp(current, target, speed, dt)
         local t = 1 - math.exp(-speed * dt)
@@ -295,7 +295,7 @@ local function CreateFunc()
     end
 
     --[[
-        Умное позиционирование панели относительно экрана
+        Smart panel positioning relative to screen
     ]]--
     function Mantle.func.ClampMenuPosition(panel)
         if not IsValid(panel) then return end

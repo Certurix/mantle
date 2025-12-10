@@ -2,8 +2,8 @@ if SERVER then
     util.AddNetworkString('Mantle-Notify')
 
     --[[
-        Функция для выведения в чат текста.
-        Можно выводить определённой цели информацию, либо всем, указав вместо pl - true
+        Function for outputting text to chat.
+        Can output to specific target or everyone by specifying true instead of pl
     ]]--
     function Mantle.notify(pl, header_color, header, text)
         net.Start('Mantle-Notify')

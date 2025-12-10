@@ -44,7 +44,7 @@ function PANEL:Init()
         end
 
         draw.SimpleText(
-            self.selected or self.placeholder or 'Выберите...',
+            self.selected or self.placeholder or 'Select...',
             self.font,
             12,
             h * 0.5,

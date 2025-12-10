@@ -35,7 +35,7 @@ function PANEL:Init(options)
     options = options or {}
 
     self.options = {}
-    self.rootMenu = { title = 'Меню', desc = 'Выберите опцию', options = self.options }
+    self.rootMenu = { title = 'Menu', desc = 'Select option', options = self.options }
     self.menuStack = {}
     self.currentMenu = self.rootMenu
 
@@ -183,7 +183,7 @@ end
 function PANEL:OnMouseReleased(k) self:MouseCapture(false) end
 
 function PANEL:CreateSubMenu(title, desc)
-    local submenu = { title = title or 'Подменю', desc = desc or '', options = {} }
+    local submenu = { title = title or 'Submenu', desc = desc or '', options = {} }
     function submenu:AddOption(text, func, icon, desc)
         table.insert(submenu.options, { text = text, func = func, icon = icon, desc = desc })
         return #submenu.options

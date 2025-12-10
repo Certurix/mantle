@@ -5,7 +5,7 @@ function PANEL:Init()
     self.active_id = 1
     self.tab_height = 38
     self.animation_speed = 12
-    self.tab_style = 'modern' -- modern или classic
+    self.tab_style = 'modern' -- modern or classic
     self.indicator_height = 2
 
     self.indicator_x = 0
