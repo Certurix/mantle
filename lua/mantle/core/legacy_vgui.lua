@@ -1,5 +1,5 @@
 --[[
-    Старые функции отрисовки ui-элементов
+    Old UI element rendering functions
 ]]--
 
 local color_gray = Color(200, 200, 200)
@@ -53,7 +53,7 @@ function Mantle.ui.frame(s, title, width, height, close_bool, anim_bool)
         end
         s.cls.DoRightClick = function()
             local DM = Mantle.ui.derma_menu()
-            DM:AddOption('Закрыть окно', function()
+            DM:AddOption('Close window', function()
                 s:Remove()
             end, 'icon16/cross.png')
         end
@@ -217,7 +217,7 @@ function Mantle.ui.checkbox(parent, text, convar)
     option.enabled = convar and GetConVar(convar):GetBool() or false
     option.Paint = function(self, w, h)
         draw.RoundedBoxEx(6, 0, 0, w, h, Mantle.color.panel_alpha[1], false, true, false, true)
-        draw.SimpleText(self.enabled and 'ВКЛ' or 'ВЫКЛ', 'Fated.19', w * 0.5 - 1, h * 0.5 - 1, Mantle.color.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(self.enabled and 'ON' or 'OFF', 'Fated.19', w * 0.5 - 1, h * 0.5 - 1, Mantle.color.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
     option.DoClick = function()
         if convar then
@@ -247,7 +247,7 @@ function Mantle.ui.panel_tabs(parent)
     panel_tabs.panel_content:Dock(FILL)
     panel_tabs.panel_content.Paint = function(_, w, h)
         if panel_tabs.active_tab == '' then
-            draw.SimpleText('Выберете вкладку', 'Fated.16', w * 0.5, h * 0.5 - panel_tabs.sp:GetTall() - 7, Mantle.color.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            draw.SimpleText('Select tab', 'Fated.16', w * 0.5, h * 0.5 - panel_tabs.sp:GetTall() - 7, Mantle.color.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         end
     end
 

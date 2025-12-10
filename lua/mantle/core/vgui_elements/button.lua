@@ -2,7 +2,7 @@ local PANEL = {}
 
 function PANEL:Init()
     self._activeShadowTimer = 0
-    self._activeShadowMinTime = 0.03 -- минимальная длительность (сек)
+    self._activeShadowMinTime = 0.03 -- minimum duration (sec)
     self._activeShadowLerp = 0
     self.hover_status = 0
     self.bool_hover = true
@@ -22,7 +22,7 @@ function PANEL:Init()
     self.ripple_color = Color(255, 255, 255, 30)
 
     --[[
-    TODO: тень, которая не вылезает за окно при прокрутке
+    TODO: shadow that doesn't extend outside window when scrolling
     ]]--
     -- local parent = self:GetParent()
     -- local grandParent = IsValid(parent:GetParent()) and parent:GetParent() or parent
@@ -87,19 +87,19 @@ function PANEL:Paint(w, h)
         self.hover_status = math_clamp(self.hover_status - 8 * FrameTime(), 0, 1)
     end
 
-    -- Минимальный порог длительности для активной тени
+    -- Minimum duration threshold for active shadow
     local isActive = (self:IsDown() or self.Depressed) and self.hover_status > 0.8
     if isActive then
         self._activeShadowTimer = SysTime() + self._activeShadowMinTime
     end
     local showActiveShadow = isActive or (self._activeShadowTimer > SysTime())
 
-    -- Плавная анимация дополнительной тени при зажатии
+    -- Smooth animation of additional shadow when pressed
     local activeTarget = showActiveShadow and 10 or 0
-    local activeSpeed = (activeTarget > 0) and 7 or 3 -- скорость появления/затухания
+    local activeSpeed = (activeTarget > 0) and 7 or 3 -- appearance/fade speed
     self._activeShadowLerp = Lerp(FrameTime() * activeSpeed, self._activeShadowLerp, activeTarget)
 
-    -- Обычная тень
+    -- Regular shadow
     -- if Mantle.ui.convar.depth_ui then
     --     RNDX().Rect(0, 0, w, h)
     --         :Rad(self.radius)
@@ -110,7 +110,7 @@ function PANEL:Paint(w, h)
     --     :Draw()
     -- end
 
-    -- Дополнительная тень при зажатии
+    -- Additional shadow when pressed
     if self._activeShadowLerp > 0 and Mantle.ui.convar.depth_ui then
         local col = Color(self.col_hov.r, self.col_hov.g, self.col_hov.b, math.Clamp(self.col_hov.a * 1.5, 0, 255))
         RNDX().Rect(0, 0, w, h)

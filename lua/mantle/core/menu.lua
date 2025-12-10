@@ -8,7 +8,7 @@ local function CreateMenu()
     menuMantle:Center()
     menuMantle:MakePopup()
     menuMantle:SetTitle('Mantle')
-    menuMantle:SetCenterTitle('Основное меню библиотеки')
+    menuMantle:SetCenterTitle('Library Main Menu')
     menuMantle:ShowAnimation()
 
     local tabs = vgui.Create('MantleTabs', menuMantle)
@@ -48,7 +48,7 @@ local function CreateMenu()
                 :Color(Mantle.color.panel_alpha[1])
             :Draw()
 
-            draw.SimpleText('Скопировать', 'Fated.16', w / 2, h / 2, Mantle.color.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            draw.SimpleText('Copy', 'Fated.16', w / 2, h / 2, Mantle.color.text, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         end
         b.DoClick = function()
             SetClipboardText(snippet)
@@ -104,11 +104,11 @@ local function CreateMenu()
 
     local function CreateTabElements()
         local panel = vgui.Create('MantleScrollPanel')
-        CreateTabHeader('UI Элементы', 'Демонстрация всех компонентов Mantle. Клик по элементу открывает пример.', Material('icon16/chart_pie.png'), panel)
+        CreateTabHeader('UI Elements', 'Demonstration of all Mantle components. Click on an element to open an example.', Material('icon16/chart_pie.png'), panel)
 
         local menuWide = menuMantle:GetWide()
 
-        -- Кнопка
+        -- Button
         local panelBtns = vgui.Create('Panel')
         panelBtns:Dock(TOP)
         panelBtns:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
@@ -117,65 +117,65 @@ local function CreateMenu()
         local btn1 = vgui.Create('MantleBtn', panelBtns)
         btn1:Dock(TOP)
         btn1:SetTall(40)
-        btn1:SetTxt('Стандартная кнопка')
+        btn1:SetTxt('Standard button')
 
         local btn2 = vgui.Create('MantleBtn', panelBtns)
         btn2:Dock(TOP)
         btn2:DockMargin(0, 6, 0, 0)
         btn2:SetTall(40)
-        btn2:SetTxt('Эффект волны')
+        btn2:SetTxt('Ripple effect')
         btn2:SetRipple(true)
 
         local btn3 = vgui.Create('MantleBtn', panelBtns)
         btn3:Dock(TOP)
         btn3:DockMargin(0, 6, 0, 0)
         btn3:SetTall(40)
-        btn3:SetTxt('Кастомный цвет')
+        btn3:SetTxt('Custom color')
         btn3:SetColor(Color(182, 65, 65))
         btn3:SetColorHover(Color(143, 57, 57))
         btn3:SetIcon(Material('icon16/delete.png'), 16)
 
-        CreateCategory('Кнопка (MantleBtn)', {
-            {':SetHover(bool is_hover)', 'Включить/выключить цвет наведения (дефолт - true)'},
-            {':SetFont(string font)', 'Установить шрифт'},
-            {':SetRadius(int rad)', 'Установить размер закругления'},
-            {':SetIcon(string icon, int icon_size)', 'Установить иконку'},
-            {':SetTxt(string text)', 'Установить текст'},
-            {':SetColor(color col)', 'Установить цвет кнопки'},
-            {':SetColorHover(color col)', 'Установить цвет наведения'},
-            {':SetGradient(bool is_grad)', 'Включить/выключить градиент (дефолт - true)'},
-            {':SetRipple(bool is_ripple)', 'Включить/выключить эффект волн (дефолт - false)'}
+        CreateCategory('Button (MantleBtn)', {
+            {':SetHover(bool is_hover)', 'Enable/disable hover color (default - true)'},
+            {':SetFont(string font)', 'Set font'},
+            {':SetRadius(int rad)', 'Set corner radius'},
+            {':SetIcon(string icon, int icon_size)', 'Set icon'},
+            {':SetTxt(string text)', 'Set text'},
+            {':SetColor(color col)', 'Set button color'},
+            {':SetColorHover(color col)', 'Set hover color'},
+            {':SetGradient(bool is_grad)', 'Enable/disable gradient (default - true)'},
+            {':SetRipple(bool is_ripple)', 'Enable/disable ripple effect (default - false)'}
         }, panel, panelBtns)
 
-        -- Чекбокс
+        -- Checkbox
         local checkbox = vgui.Create('MantleCheckBox')
         checkbox:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
         checkbox:Dock(TOP)
-        checkbox:SetTxt('Отображение HUD')
+        checkbox:SetTxt('HUD Display')
         checkbox:SetConvar('cl_drawhud')
-        CreateCategory('Тумблер (MantleCheckBox)', {
-            {':SetTxt(string text)', 'Установить текст'},
-            {':SetValue(bool value)', 'Установить bool-значение тумблера'},
-            {':GetBool()', 'Получить bool-значение тумблера'},
-            {':SetConvar(string convar)', 'Установить ConVar'},
-            {':SetDescription(string desc)', 'Установить описание для тумблера'},
-            {':OnChange(bool new_value)', 'Вызывается при изменении значения тумблера'}
+        CreateCategory('Toggle (MantleCheckBox)', {
+            {':SetTxt(string text)', 'Set text'},
+            {':SetValue(bool value)', 'Set bool-value of toggle'},
+            {':GetBool()', 'Get bool-value of toggle'},
+            {':SetConvar(string convar)', 'Set ConVar'},
+            {':SetDescription(string desc)', 'Set description for toggle'},
+            {':OnChange(bool new_value)', 'Called when toggle value changes'}
         }, panel, checkbox)
 
-        -- Ввод текста
+        -- Text input
         local entry = vgui.Create('MantleEntry')
         entry:Dock(TOP)
         entry:DockMargin(menuWide * 0.35, 6, menuWide * 0.35, 0)
-        entry:SetTitle('Никнейм')
+        entry:SetTitle('Nickname')
         entry:SetPlaceholder('darkf')
-        CreateCategory('Ввод текста (MantleEntry)', {
-            {':SetTitle(string text)', 'Установить заголовок'},
-            {':SetPlaceholder(string text)', 'Установить фоновый текст (появляется при пустом поле)'},
-            {':GetValue()', 'Получить string-значение поля'},
-            {':SetValue(string value)', 'Установить значение полю'}
+        CreateCategory('Text Input (MantleEntry)', {
+            {':SetTitle(string text)', 'Set title'},
+            {':SetPlaceholder(string text)', 'Set placeholder text (appears when field is empty)'},
+            {':GetValue()', 'Get string-value of field'},
+            {':SetValue(string value)', 'Set field value'}
         }, panel, entry)
 
-        -- Окно
+        -- Window
         local panelFrames = vgui.Create('Panel')
         panelFrames:Dock(TOP)
         panelFrames:SetTall(92)
@@ -183,20 +183,20 @@ local function CreateMenu()
         local btnFrame1 = vgui.Create('MantleBtn', panelFrames)
         btnFrame1:Dock(TOP)
         btnFrame1:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
-        btnFrame1:SetTxt('Обычное окно')
+        btnFrame1:SetTxt('Regular window')
         btnFrame1:SetTall(40)
         btnFrame1.DoClick = function()
             local frame = vgui.Create('MantleFrame')
             frame:SetSize(400, 300)
             frame:Center()
             frame:MakePopup()
-            frame:SetCenterTitle('Центр')
+            frame:SetCenterTitle('Center')
         end
 
         local btnFrame2 = vgui.Create('MantleBtn', panelFrames)
         btnFrame2:Dock(TOP)
         btnFrame2:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
-        btnFrame2:SetTxt('Lite-режим')
+        btnFrame2:SetTxt('Lite mode')
         btnFrame2:SetTall(40)
         btnFrame2.DoClick = function()
             local frame = vgui.Create('MantleFrame')
@@ -206,15 +206,15 @@ local function CreateMenu()
             frame:LiteMode()
         end
 
-        CreateCategory('Окно (MantleFrame)', {
-            {':SetAlphaBackground(bool is_alpha)', 'Включить/выключить прозрачность окна (дефолт - false)'},
-            {':SetTitle(string title)', 'Установить заголовок'},
-            {':SetCenterTitle(string title)', 'Установить центральный заголовок'},
-            {':ShowAnimation()', 'Активировать анимацию при появлении меню'},
-            {':DisableCloseBtn()', 'Скрыть кнопку закрытия'},
-            {':SetDraggable(bool is_draggable)', 'Включить/выключить перемещение окна'},
-            {':LiteMode()', 'Активировать режим Lite (без верхней панели)'},
-            {':Notify(string text, number duration, color col)', 'Показать уведомление внизу окна (дефолт времени - 2 сек., цвета - Mantle.color.theme)'}
+        CreateCategory('Window (MantleFrame)', {
+            {':SetAlphaBackground(bool is_alpha)', 'Enable/disable window transparency (default - false)'},
+            {':SetTitle(string title)', 'Set title'},
+            {':SetCenterTitle(string title)', 'Set center title'},
+            {':ShowAnimation()', 'Activate animation when menu appears'},
+            {':DisableCloseBtn()', 'Hide close button'},
+            {':SetDraggable(bool is_draggable)', 'Enable/disable window dragging'},
+            {':LiteMode()', 'Activate Lite mode (without top panel)'},
+            {':Notify(string text, number duration, color col)', 'Show notification at bottom of window (default duration - 2 sec., color - Mantle.color.theme)'}
         }, panel, panelFrames)
 
         -- ScrollPanel
@@ -235,20 +235,20 @@ local function CreateMenu()
                 :Draw()
             end
         end
-        CreateCategory('Панель прокрутки (MantleScrollPanel)', {
-            {':SetScroll(number offset)', 'Установить смещение прокрутки'},
-            {':GetScroll()', 'Получить текущее смещение прокрутки'},
-            {':AddItem(object panel)', 'Добавить элемент в панель'},
-            {':Clear()', 'Очистить панель от всего'},
-            {':DisableVBarPadding()', 'Отключить отступ справа для скроллбара (по умолчанию имеется)'}
+        CreateCategory('Scroll Panel (MantleScrollPanel)', {
+            {':SetScroll(number offset)', 'Set scroll offset'},
+            {':GetScroll()', 'Get current scroll offset'},
+            {':AddItem(object panel)', 'Add element to panel'},
+            {':Clear()', 'Clear all elements from panel'},
+            {':DisableVBarPadding()', 'Disable right padding for scrollbar (enabled by default)'}
         }, panel, sp)
 
-        -- Вкладки
+        -- Tabs
         local panelTabs = vgui.Create('Panel')
         panelTabs:Dock(TOP)
         panelTabs:SetTall(280)
 
-        local testTabs = vgui.Create('MantleTabs', panelTabs) -- modern стиль
+        local testTabs = vgui.Create('MantleTabs', panelTabs) -- modern style
         testTabs:Dock(TOP)
         testTabs:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
         testTabs:SetTall(150)
@@ -271,7 +271,7 @@ local function CreateMenu()
         end
         testTabs:AddTab('Test2', testTab2)
 
-        local testTabs2 = vgui.Create('MantleTabs', panelTabs) -- classic стиль
+        local testTabs2 = vgui.Create('MantleTabs', panelTabs) -- classic style
         testTabs2:Dock(FILL)
         testTabs2:DockMargin(menuWide * 0.3, 10, menuWide * 0.3, 0)
         testTabs2:SetTabStyle('classic')
@@ -301,17 +301,17 @@ local function CreateMenu()
                 :Shape(RNDX.SHAPE_IOS)
             :Draw()
         end
-        testTabs2:AddTab('С иконкой', testTab5, Material('icon16/folder.png'))
+        testTabs2:AddTab('With icon', testTab5, Material('icon16/folder.png'))
 
-        CreateCategory('Вкладки (MantleTabs)', {
-            {':SetTabStyle(string style)', 'Установить стиль вкладок (modern или classic)'},
-            {':SetTabHeight(int height)', 'Установить высоту вкладок'},
-            {':SetIndicatorHeight(int height)', 'Установить высоту индикатора вкладок'},
-            {':AddTab(string name, object panel, string icon)', 'Добавить вкладку'}
+        CreateCategory('Tabs (MantleTabs)', {
+            {':SetTabStyle(string style)', 'Set tab style (modern or classic)'},
+            {':SetTabHeight(int height)', 'Set tab height'},
+            {':SetIndicatorHeight(int height)', 'Set tab indicator height'},
+            {':AddTab(string name, object panel, string icon)', 'Add tab'}
         }, panel, panelTabs)
 
 
-        -- Горизонтальная прокрутка
+        -- Horizontal scroll
         local hscroll = vgui.Create('MantleHScroll')
         hscroll:Dock(TOP)
         hscroll:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
@@ -320,75 +320,75 @@ local function CreateMenu()
         for i = 1, 8 do
             local btn = vgui.Create('MantleBtn')
             btn:SetSize(120, 60)
-            btn:SetTxt('Элемент ' .. i)
+            btn:SetTxt('Element ' .. i)
             btn:Dock(LEFT)
             btn:DockMargin(0, 0, 5, 0)
             hscroll:AddItem(btn)
         end
 
-        CreateCategory('Горизонтальная прокрутка (MantleHScroll)', {
-            {':AddItem(pnl) / :Add(pnl)', 'Добавить элемент в контейнер прокрутки'},
-            {':Clear()', 'Очистить все элементы из контейнера'},
-            {':SetScroll(x)', 'Установить текущее смещение прокрутки'},
-            {':GetScroll()', 'Получить текущее смещение прокрутки'}
+        CreateCategory('Horizontal Scroll (MantleHScroll)', {
+            {':AddItem(pnl) / :Add(pnl)', 'Add element to scroll container'},
+            {':Clear()', 'Clear all elements from container'},
+            {':SetScroll(x)', 'Set current scroll offset'},
+            {':GetScroll()', 'Get current scroll offset'}
         }, panel, hscroll)
 
-        -- Выбор варианта
+        -- Choice selection
         local combo = vgui.Create('MantleComboBox')
-        combo:SetPlaceholder('Выберите вариант')
-        combo:AddChoice('Вариант 1', 'value1')
-        combo:AddChoice('Вариант 2', 'value2')
-        combo:AddChoice('Вариант 3', 'value3')
-        combo:AddChoice('Вариант 4', 'value4')
-        combo:AddChoice('Вариант 5', 'value5')
-        combo:AddChoice('Вариант 6', 'value6')
-        combo:AddChoice('Вариант 7', 'value7')
-        combo:AddChoice('Вариант 8', 'value8')
+        combo:SetPlaceholder('Select option')
+        combo:AddChoice('Option 1', 'value1')
+        combo:AddChoice('Option 2', 'value2')
+        combo:AddChoice('Option 3', 'value3')
+        combo:AddChoice('Option 4', 'value4')
+        combo:AddChoice('Option 5', 'value5')
+        combo:AddChoice('Option 6', 'value6')
+        combo:AddChoice('Option 7', 'value7')
+        combo:AddChoice('Option 8', 'value8')
         combo.OnSelect = function(idx, text, data)
-            chat.AddText(color_white, 'Вы выбрали: ', Mantle.color.theme, text, color_white, ' (', tostring(data), ')')
+            chat.AddText(color_white, 'You selected: ', Mantle.color.theme, text, color_white, ' (', tostring(data), ')')
         end
         combo:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
         combo:Dock(TOP)
-        CreateCategory('Выпадающий список (MantleComboBox)', {
-            {':AddChoice(string text, any data)', 'Добавить вариант в список (data — любое значение, связанное с пунктом)'},
-            {':SetValue(string text)', 'Установить выбранное значение по тексту'},
-            {':GetValue()', 'Получить выбранное значение (текст)'},
-            {':SetPlaceholder(string text)', 'Установить текст-заполнитель (placeholder)'},
-            {':OnSelect(idx, text, data)', 'Вызывается при выборе варианта: idx — индекс, text — текст, data — значение'}
+        CreateCategory('Dropdown List (MantleComboBox)', {
+            {':AddChoice(string text, any data)', 'Add option to list (data — any value associated with item)'},
+            {':SetValue(string text)', 'Set selected value by text'},
+            {':GetValue()', 'Get selected value (text)'},
+            {':SetPlaceholder(string text)', 'Set placeholder text'},
+            {':OnSelect(idx, text, data)', 'Called when option is selected: idx — index, text — text, data — value'}
         }, panel, combo)
 
-        -- Таблица
+        -- Table
         local tableExample = vgui.Create('MantleTable')
         tableExample:Dock(TOP)
         tableExample:DockMargin(menuWide * 0.2, 6, menuWide * 0.2, 0)
         tableExample:SetTall(250)
 
-        tableExample:AddColumn('Название', 200, TEXT_ALIGN_LEFT, true)
-        tableExample:AddColumn('Тип', 120, TEXT_ALIGN_CENTER, true)
-        tableExample:AddColumn('Качество', 100, TEXT_ALIGN_CENTER, true)
-        tableExample:AddColumn('Цена', 110, TEXT_ALIGN_RIGHT, true)
+        tableExample:AddColumn('Name', 200, TEXT_ALIGN_LEFT, true)
+        tableExample:AddColumn('Type', 120, TEXT_ALIGN_CENTER, true)
+        tableExample:AddColumn('Quality', 100, TEXT_ALIGN_CENTER, true)
+        tableExample:AddColumn('Price', 110, TEXT_ALIGN_RIGHT, true)
 
         local products = {
-            {'Молоко "Домик в деревне"', 'Молочка', 'Высшее', 89},
-            {'Хлеб "Бородинский"', 'Выпечка', 'Стандарт', 45},
-            {'Сок "Добрый"', 'Напитки', 'Премиум', 120},
-            {'Шоколад "Аленка"', 'Конфеты', 'Высшее', 95},
-            {'Йогурт "Активиа"', 'Молочка', 'Премиум', 65},
-            {'Пельмени "Сибирские"', 'Заморозка', 'Стандарт', 350},
-            {'Колбаса "Докторская"', 'Мясо', 'Высшее', 450},
-            {'Сыр "Российский"', 'Молочка', 'Стандарт', 380},
-            {'Пицца "Пепперони"', 'Заморозка', 'Премиум', 450},
-            {'Чай "Липтон"', 'Напитки', 'Стандарт', 180},
-            {'Печенье "Юбилейное"', 'Выпечка', 'Стандарт', 85},
-            {'Масло "Крестьянское"', 'Молочка', 'Высшее', 120},
-            {'Сметана "Простоквашино"', 'Молочка', 'Стандарт', 65},
-            {'Курица "Бройлер"', 'Мясо', 'Стандарт', 280},
-            {'Рыба "Минтай"', 'Морепродукты', 'Стандарт', 320},
-            {'Яблоки "Голден"', 'Фрукты', 'Высшее', 180},
-            {'Картофель', 'Овощи', 'Стандарт', 45},
-            {'Морковь', 'Овощи', 'Стандарт', 35},
-            {'Бананы', 'Фрукты', 'Стандарт', 120},
-            {'Апельсины', 'Фрукты', 'Премиум', 180}
+            {'Milk "Farm House"', 'Dairy', 'Premium', 89},
+            {'Bread "Borodinsky"', 'Bakery', 'Standard', 45},
+            {'Juice "Kind"', 'Beverages', 'Premium', 120},
+            {'Chocolate "Alenka"', 'Candy', 'Premium', 95},
+            {'Yogurt "Activia"', 'Dairy', 'Premium', 65},
+            {'Dumplings "Siberian"', 'Frozen', 'Standard', 350},
+            {'Sausage "Doctorskaya"', 'Meat', 'Premium', 450},
+            {'Cheese "Russian"', 'Dairy', 'Standard', 380},
+            {'Pizza "Pepperoni"', 'Frozen', 'Premium', 450},
+            {'Tea "Lipton"', 'Beverages', 'Standard', 180},
+            {'Cookies "Jubilee"', 'Bakery', 'Standard', 85},
+            {'Butter "Farm"', 'Dairy', 'Premium', 120},
+            {'Sour Cream "Prostokvashino"', 'Dairy', 'Standard', 65},
+            {'Chicken "Broiler"', 'Meat', 'Standard', 280},
+            {'Fish "Pollock"', 'Seafood', 'Standard', 320},
+            {'Apples "Golden"', 'Fruits', 'Premium', 180},
+            {'Potatoes', 'Vegetables', 'Standard', 45},
+            {'Carrots', 'Vegetables', 'Standard', 35},
+            {'Bananas', 'Fruits', 'Standard', 120},
+            {'Oranges', 'Fruits', 'Premium', 180}
         }
 
         for _, product in ipairs(products) do
@@ -396,21 +396,21 @@ local function CreateMenu()
         end
 
         tableExample:SetAction(function(row_data)
-            chat.AddText(color_white, 'Выбран продукт: ', Mantle.color.theme, row_data[1], color_white, ' (', row_data[2], ')')
+            chat.AddText(color_white, 'Selected product: ', Mantle.color.theme, row_data[1], color_white, ' (', row_data[2], ')')
         end)
 
-        CreateCategory('Таблица (MantleTable)', {
-            {':AddColumn(string name, number width, number align, bool sortable)', 'Добавить колонку'},
-            {':AddItem(...)', 'Добавить строку. Количество аргументов должно соответствовать количеству колонок'},
-            {':SetAction(function(table row_data))', 'Установить функцию, вызываемую при клике на строку. row_data — массив значений строки'},
-            {':SetRightClickAction(function(table row_data))', 'Установить функцию, вызываемую при правом клике на строку'},
-            {':Clear()', 'Очистить таблицу от всех строк'},
-            {':GetSelectedRow()', 'Получить данные выбранной строки (массив значений)'},
-            {':GetRowCount()', 'Получить количество строк в таблице'},
-            {':RemoveRow(number index)', 'Удалить строку по индексу (начиная с 1)'}
+        CreateCategory('Table (MantleTable)', {
+            {':AddColumn(string name, number width, number align, bool sortable)', 'Add column'},
+            {':AddItem(...)', 'Add row. Number of arguments must match number of columns'},
+            {':SetAction(function(table row_data))', 'Set function called when row is clicked. row_data — array of row values'},
+            {':SetRightClickAction(function(table row_data))', 'Set function called when row is right-clicked'},
+            {':Clear()', 'Clear table of all rows'},
+            {':GetSelectedRow()', 'Get selected row data (array of values)'},
+            {':GetRowCount()', 'Get number of rows in table'},
+            {':RemoveRow(number index)', 'Remove row by index (starting from 1)'}
         }, panel, tableExample)
 
-        -- Категория
+        -- Category
         local panelCat = vgui.Create('Panel')
         panelCat:Dock(TOP)
         panelCat:DockMargin(0, 6, 0, 0)
@@ -444,28 +444,28 @@ local function CreateMenu()
             :Draw()
         end
         cat:AddItem(panRed)
-        CreateCategory('Категория (MantleCategory)', {
-            {':SetText(string name)', 'Установить название'},
-            {':AddItem(object panel)', 'Добавить в категорию элемент'},
-            {':SetColor(color col)', 'Установить кастомный цвет категории'},
-            {':SetCenterText(bool is_centered)', 'Установить центрирование названия'},
-            {':SetActive(bool is_active)', 'Установить активность категории (дефолт - false)'}
+        CreateCategory('Category (MantleCategory)', {
+            {':SetText(string name)', 'Set name'},
+            {':AddItem(object panel)', 'Add element to category'},
+            {':SetColor(color col)', 'Set custom category color'},
+            {':SetCenterText(bool is_centered)', 'Set name centering'},
+            {':SetActive(bool is_active)', 'Set category active state (default - false)'}
         }, panel, panelCat)
 
-        -- Слайдер
+        -- Slider
         local slider = vgui.Create('MantleSlideBox')
         slider:Dock(TOP)
         slider:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
         slider:SetRange(0, 4)
         slider:SetConvar('net_graph')
-        slider:SetText('График')
-        CreateCategory('Слайдер (MantleSlideBox)', {
-            {':SetRange(int min_value, int max_value, int decimals)', 'Сделать диапазон слайдера с точностью (дефолт точность - 0)'},
-            {':SetConvar(string convar)', 'Установить ConVar'},
-            {':SetText(string text)', 'Установить текстовое обозначение'},
-            {':SetValue(string val)', 'Установить значение'},
-            {':GetValue()', 'Получить выбранное значение (число)'},
-            {':OnValueChanged(string new_value)', 'Вызывается при изменении значения слайдера'}
+        slider:SetText('Graph')
+        CreateCategory('Slider (MantleSlideBox)', {
+            {':SetRange(int min_value, int max_value, int decimals)', 'Set slider range with precision (default precision - 0)'},
+            {':SetConvar(string convar)', 'Set ConVar'},
+            {':SetText(string text)', 'Set text label'},
+            {':SetValue(string val)', 'Set value'},
+            {':GetValue()', 'Get selected value (number)'},
+            {':OnValueChanged(string new_value)', 'Called when slider value changes'}
         }, panel, slider)
 
         local panelTexts = vgui.Create('Panel')
@@ -496,7 +496,7 @@ local function CreateMenu()
         local text1 = vgui.Create('MantleText', panelText1)
         text1:Dock(FILL)
         text1:SetPadding(10)
-        text1:SetText('MantleText — компонент для аккуратного вывода многострочного текста. Текст автоматически переносится по ширине и сокращается троеточием')
+        text1:SetText('MantleText — component for neat multiline text output. Text automatically wraps by width and is truncated with ellipsis')
 
         local panelText2 = vgui.Create('DPanel', panelTexts)
         panelText2:Dock(TOP)
@@ -514,7 +514,7 @@ local function CreateMenu()
         text2:Dock(FILL)
         text2:SetPadding(12)
         text2:SetFont('Fated.20')
-        text2:SetText('Центрирование: горизонталь + вертикаль. Текст выровнен по центру блока.')
+        text2:SetText('Centering: horizontal + vertical. Text is centered in the block.')
         text2:SetAlign(TEXT_ALIGN_CENTER)
         text2:SetVAlign('center')
 
@@ -533,7 +533,7 @@ local function CreateMenu()
         local text3 = vgui.Create('MantleText', panelText3)
         text3:Dock(FILL)
         text3:SetPadding(8)
-        text3:SetText('ОченьДлинноеСловоБезПробеловКотороеНужноОтделитьЧтобыНеПорвалосьОформление')
+        text3:SetText('VeryLongWordWithoutSpacesThatNeedsToBeSeperatedSoItDoesNotBreakTheLayout')
 
         local panelText4 = vgui.Create('DPanel', panelTexts)
         panelText4:Dock(TOP)
@@ -547,7 +547,7 @@ local function CreateMenu()
         end
 
         local longText = [[
-        Это длинный пример текста, который занимает несколько строк. Если блок небольшой по высоте — последняя видимая строка будет усечена с троеточием, чтобы не порвать верстку и не выходить за пределы панели нашего меню.
+        This is a long example text that spans multiple lines. If the block is small in height — the last visible line will be truncated with ellipsis to not break the layout and not exceed the boundaries of our menu panel.
         ]]
 
         local text4 = vgui.Create('MantleText', panelText4)
@@ -556,122 +556,122 @@ local function CreateMenu()
         text4:SetFont('Fated.16')
         text4:SetText(longText)
 
-        CreateCategory('Текст (MantleText)', {
-            {':SetText(string text)', 'Установить текст для отображения'},
-            {':SetFont(string font)', 'Установить шрифт'},
-            {':SetColor(color col)', 'Установить цвет текста'},
-            {':SetAlign(number align)', 'Горизонтальное выравнивание (TEXT_ALIGN_*)'},
-            {':SetVAlign(string valign)', 'Вертикальное выравнивание: top, center, bottom'},
-            {':SetPadding(number px)', 'Внутренний отступ от краёв'}
+        CreateCategory('Text (MantleText)', {
+            {':SetText(string text)', 'Set text to display'},
+            {':SetFont(string font)', 'Set font'},
+            {':SetColor(color col)', 'Set text color'},
+            {':SetAlign(number align)', 'Horizontal alignment (TEXT_ALIGN_*)'},
+            {':SetVAlign(string valign)', 'Vertical alignment: top, center, bottom'},
+            {':SetPadding(number px)', 'Internal padding from edges'}
         }, panel, panelTexts)
 
         return panel
     end
 
-    tabs:AddTab('UI Элементы', CreateTabElements(), Material('icon16/chart_pie.png'))
+    tabs:AddTab('UI Elements', CreateTabElements(), Material('icon16/chart_pie.png'))
 
     local function CreateShowMenus()
         local panel = vgui.Create('MantleScrollPanel')
-        CreateTabHeader('Всплывающие', 'Палитра, derma-меню, radial и другие утилиты.', Material('icon16/application_double.png'), panel)
+        CreateTabHeader('Popups', 'Color picker, derma-menu, radial and other utilities.', Material('icon16/application_double.png'), panel)
 
         local listMenus = {
-            {'Выбор цвета через палитру', function()
+            {'Color selection via picker', function()
                 Mantle.ui.color_picker(function(col)
-                    chat.AddText('Вы выбрали цвет: ', col, tostring(col))
+                    chat.AddText('You selected color: ', col, tostring(col))
                 end, Color(25, 59, 102))
             end},
-            {'Опциональное меню (Derma Menu)', function()
+            {'Optional menu (Derma Menu)', function()
                 local DM = Mantle.ui.derma_menu()
                 for i = 1, 5 do
-                    DM:AddOption('Опция ' .. i, function()
-                        chat.AddText('Привет всем! ' .. i)
+                    DM:AddOption('Option ' .. i, function()
+                        chat.AddText('Hello everyone! ' .. i)
                     end)
                 end
                 DM:AddSpacer()
-                DM:AddOption('Узнать свою привилегию', function()
+                DM:AddOption('Check your privilege', function()
                     chat.AddText(LocalPlayer():GetUserGroup())
                 end, 'icon16/status_online.png')
             end},
-            {'Опциональное с подменю (Derma Menu)', function()
+            {'Optional with submenu (Derma Menu)', function()
                 local DM = Mantle.ui.derma_menu()
 
-                local clothes = DM:AddOption('Одежда')
+                local clothes = DM:AddOption('Clothing')
                 local subClothes = clothes:AddSubMenu()
-                subClothes:AddOption('Шапка', function()
-                    chat.AddText('Вы выбрали: Шапка')
+                subClothes:AddOption('Hat', function()
+                    chat.AddText('You selected: Hat')
                 end)
-                subClothes:AddOption('Свитер', function()
-                    chat.AddText('Вы выбрали: Свитер')
+                subClothes:AddOption('Sweater', function()
+                    chat.AddText('You selected: Sweater')
                 end)
 
-                local food = DM:AddOption('Еда')
+                local food = DM:AddOption('Food')
                 local subFood = food:AddSubMenu()
-                subFood:AddOption('Морковь', function()
-                    chat.AddText('Вы выбрали: Морковь')
+                subFood:AddOption('Carrot', function()
+                    chat.AddText('You selected: Carrot')
                 end)
-                subFood:AddOption('Яблоко', function()
-                    chat.AddText('Вы выбрали: Яблоко')
+                subFood:AddOption('Apple', function()
+                    chat.AddText('You selected: Apple')
                 end)
             end},
-            {'Выбор игрока', function()
+            {'Player selection', function()
                 Mantle.ui.player_selector(function(pl)
-                    chat.AddText('Вы выбрали игрока: ', color_white, pl:Name())
+                    chat.AddText('You selected player: ', color_white, pl:Name())
                 end)
             end},
-            {'Круговое меню', function()
+            {'Radial menu', function()
                 --[[
-                Имеется возможность настроить радиальное меню
+                The radial menu can be configured
 
                 local configRadial = {
-                    disable_background = true, -- отключает фон
-                    hover_sound = 'buttons/button14.wav', -- звук при наведении
-                    scale_animation = false, -- отключает анимацию масштабирования
-                    radius = 300, -- радиус меню
-                    inner_radius = 100 -- радиус внутреннего круга
+                    disable_background = true, -- disables background
+                    hover_sound = 'buttons/button14.wav', -- hover sound
+                    scale_animation = false, -- disables scale animation
+                    radius = 300, -- menu radius
+                    inner_radius = 100 -- inner circle radius
                 }
 
                 local rm = Mantle.ui.radial_menu(configRadial)
                 --]]
 
                 local rm = Mantle.ui.radial_menu()
-                rm:SetCenterText('Действия', 'Выберите действие')
+                rm:SetCenterText('Actions', 'Select action')
 
-                local weaponsMenu = rm:CreateSubMenu('Оружие', 'Выберите оружие')
-                weaponsMenu:AddOption('Пистолет', function()
-                    chat.AddText(Mantle.color.theme, 'Выбран пистолет')
-                end, 'icon16/gun.png', 'Обычный пистолет')
-                weaponsMenu:AddOption('Винтовка', function()
-                    chat.AddText(Mantle.color.theme, 'Выбрана винтовка')
-                end, 'icon16/gun.png', 'Мощная винтовка')
-                rm:AddSubMenuOption('Оружие', weaponsMenu, 'icon16/gun.png', 'Выберите оружие')
+                local weaponsMenu = rm:CreateSubMenu('Weapons', 'Select weapon')
+                weaponsMenu:AddOption('Pistol', function()
+                    chat.AddText(Mantle.color.theme, 'Selected pistol')
+                end, 'icon16/gun.png', 'Regular pistol')
+                weaponsMenu:AddOption('Rifle', function()
+                    chat.AddText(Mantle.color.theme, 'Selected rifle')
+                end, 'icon16/gun.png', 'Powerful rifle')
+                rm:AddSubMenuOption('Weapons', weaponsMenu, 'icon16/gun.png', 'Select weapon')
 
-                -- Обычные опции
-                rm:AddOption('Выбросить', function()
-                    chat.AddText('Выбросить оружие')
-                end, 'icon16/gun.png', 'Выбросить оружие')
-                rm:AddOption('Кинуть кубик', function()
-                    chat.AddText('Действие выполнено')
-                end, 'icon16/controller.png', 'Рандом кубика')
-                rm:AddOption('Погибнуть', function()
-                    chat.AddText('Действие выполнено')
-                end, 'icon16/world.png', 'Попрощаться с миром')
-                rm:AddOption('Хакнуть', function()
-                    chat.AddText('Действие выполнено')
-                end, 'icon16/server.png', 'Взломать сервер')
-                rm:AddOption('Посмотреть баланс', function()
-                    chat.AddText('Действие выполнено')
-                end, 'icon16/money.png', 'Сколько у вас денег')
-                rm:AddOption('Нет иконки', function()
-                    chat.AddText('Действие выполнено')
-                end, nil, 'Где иконка?')
+                -- Regular options
+                rm:AddOption('Drop', function()
+                    chat.AddText('Drop weapon')
+                end, 'icon16/gun.png', 'Drop weapon')
+                rm:AddOption('Roll dice', function()
+                    chat.AddText('Action completed')
+                end, 'icon16/controller.png', 'Random dice')
+                rm:AddOption('Die', function()
+                    chat.AddText('Action completed')
+                end, 'icon16/world.png', 'Say goodbye to the world')
+                rm:AddOption('Hack', function()
+                    chat.AddText('Action completed')
+                end, 'icon16/server.png', 'Hack the server')
+                rm:AddOption('Check balance', function()
+                    chat.AddText('Action completed')
+                end, 'icon16/money.png', 'How much money you have')
+                rm:AddOption('No icon', function()
+                    chat.AddText('Action completed')
+                end, nil, 'Where is the icon?')
             end},
-            {'Написание текста', function()
-                Mantle.ui.text_box('Заголовок', 'Описание того, что вводиться', function(s)
-                    chat.AddText('Вы ввели: ', color_white, s)
+            {'Text writing', function()
+                Mantle.ui.text_box('Title', 'Description of what to enter', function(s)
+                    chat.AddText('You entered: ', color_white, s)
                 end)
             end},
-            {'Вызов сообщения в Окне', function()
-                menuMantle:Notify('Тестовое сообщение!')
+            {'Call message in Window', function()
+                menuMantle:Notify('Test message!')
             end}
         }
 
@@ -690,69 +690,69 @@ local function CreateMenu()
         return panel
     end
 
-    tabs:AddTab('Всплывающие', CreateShowMenus(), Material('icon16/application_double.png'))
+    tabs:AddTab('Popups', CreateShowMenus(), Material('icon16/application_double.png'))
 
     local function CreateTabFunctions()
         local panel = vgui.Create('MantleScrollPanel')
-        CreateTabHeader('Функции', 'Полный список утилитарных функций Mantle.func и других вспомогательных функций', Material('icon16/cog.png'), panel)
+        CreateTabHeader('Functions', 'Complete list of utility functions Mantle.func and other helper functions', Material('icon16/cog.png'), panel)
 
         local menuWide = menuMantle:GetWide()
 
-        CreateCategory('Размытие панели', {
-            {'Mantle.func.blur(object panel)', 'Отрисовка размытия панели в Paint'}
+        CreateCategory('Panel blur', {
+            {'Mantle.func.blur(object panel)', 'Render panel blur in Paint'}
         }, panel)
 
-        CreateCategory('Градиент', {
-            {'Mantle.func.gradient(int x, int y, int w, int h, int dir, color color_shadow, int radius, flags)', 'Отрисовка градиента (dir: 1 - вверх, 2 - вниз, 3 - влево, 4 - вправо)'}
+        CreateCategory('Gradient', {
+            {'Mantle.func.gradient(int x, int y, int w, int h, int dir, color color_shadow, int radius, flags)', 'Render gradient (dir: 1 - up, 2 - down, 3 - left, 4 - right)'}
         }, panel)
 
-        CreateCategory('Создание звука', {
-            {'Mantle.func.sound(string path)', 'Проигрывает звук (дефолт - mantle/btn_click.ogg)'}
+        CreateCategory('Sound creation', {
+            {'Mantle.func.sound(string path)', 'Plays sound (default - mantle/btn_click.ogg)'}
         }, panel)
 
-        CreateCategory('Относительные единицы для адаптивного интерфейса', {
-            {'Mantle.func.w(int px)', 'Относительная ширина (от 1920)'},
-            {'Mantle.func.h(int px)', 'Относительная высота (от 1080)'}
+        CreateCategory('Relative units for adaptive interface', {
+            {'Mantle.func.w(int px)', 'Relative width (from 1920)'},
+            {'Mantle.func.h(int px)', 'Relative height (from 1080)'}
         }, panel)
 
-        CreateCategory('Отрисовка текста над энтити', {
-            {'Mantle.func.draw_ent_text(object ent, string text, int posY)', 'Рисует текст над энтити с плавным появлением (3D2D)'}
+        CreateCategory('Draw text above entity', {
+            {'Mantle.func.draw_ent_text(object ent, string text, int posY)', 'Draws text above entity with smooth appearance (3D2D)'}
         }, panel)
 
-        CreateCategory('Анимация размера панели', {
-            {'Mantle.func.animate_appearance(object panel, int w, int h, int duration, int alpha_dur, func callback, int scale_factor)', 'Плавное изменение панели до нужного размера'}
+        CreateCategory('Panel size animation', {
+            {'Mantle.func.animate_appearance(object panel, int w, int h, int duration, int alpha_dur, func callback, int scale_factor)', 'Smooth panel resize to desired size'}
         }, panel)
 
-        CreateCategory('Плавное изменение цвета', {
-            {'Mantle.func.LerpColor(int frac, color col1, color col2)', 'Плавный переход цвета от col1 → col2'}
+        CreateCategory('Smooth color change', {
+            {'Mantle.func.LerpColor(int frac, color col1, color col2)', 'Smooth color transition from col1 → col2'}
         }, panel)
 
-        CreateCategory('Загрузка картинки', {
-            {'http.DownloadMaterial(string url, string path, func callback, int retry_count)', 'Скачивает материал по URL и кэширует его. Повторяет попытку при ошибке, возвращает через callback материал'}
+        CreateCategory('Image loading', {
+            {'http.DownloadMaterial(string url, string path, func callback, int retry_count)', 'Downloads material from URL and caches it. Retries on error, returns material via callback'}
         }, panel)
 
-        CreateCategory('Серверное уведомление', {
-            {'Mantle.notify(object pl, color header_color, string header, string text)', 'Отправка сообщений в чат игроку или всем (вместо pl указать true - тогда всем)'}
+        CreateCategory('Server notification', {
+            {'Mantle.notify(object pl, color header_color, string header, string text)', 'Send messages to player chat or everyone (specify true instead of pl - then to everyone)'}
         }, panel)
 
-        CreateCategory('Изменение регистра букв', {
-            {'utf8.lower(string text)', 'Преобразует строку в нижний регистр с поддержкой русских букв'},
-            {'utf8.upper(string text)', 'Преобразует строку в верхний регистр с поддержкой русских букв'}
+        CreateCategory('Case change', {
+            {'utf8.lower(string text)', 'Converts string to lowercase with Russian letter support'},
+            {'utf8.upper(string text)', 'Converts string to uppercase with Russian letter support'}
         }, panel)
 
         return panel
     end
 
-    tabs:AddTab('Функции', CreateTabFunctions(), Material('icon16/error.png'))
+    tabs:AddTab('Functions', CreateTabFunctions(), Material('icon16/error.png'))
 
     local function CreateLegacyTest()
         local panel = vgui.Create('MantleScrollPanel')
-        CreateTabHeader('Legacy UI', 'Набор legacy-утилит (Mantle.ui.*). Для совместимости и примеров.', Material('icon16/exclamation.png'), panel)
+        CreateTabHeader('Legacy UI', 'Set of legacy utilities (Mantle.ui.*). For compatibility and examples.', Material('icon16/exclamation.png'), panel)
 
         local menuWide = menuMantle:GetWide()
 
         local btnFrame = vgui.Create('MantleBtn')
-        btnFrame:SetTxt('Открыть Legacy Frame')
+        btnFrame:SetTxt('Open Legacy Frame')
         btnFrame:SetTall(40)
         btnFrame:DockMargin(menuWide * 0.3, 6, menuWide * 0.3, 0)
         btnFrame:Dock(TOP)
@@ -767,53 +767,53 @@ local function CreateMenu()
             scroll:Dock(FILL)
             Mantle.ui.sp(scroll)
 
-            -- Тест кнопок с разными параметрами
+            -- Test buttons with different parameters
             local btn1 = vgui.Create('DButton', scroll)
             btn1:Dock(TOP)
             btn1:DockMargin(10, 10, 10, 0)
-            btn1:SetText('Обычная кнопка')
+            btn1:SetText('Regular button')
             Mantle.ui.btn(btn1)
 
             local btn2 = vgui.Create('DButton', scroll)
             btn2:Dock(TOP)
             btn2:DockMargin(10, 10, 10, 0)
-            btn2:SetText('Кнопка с иконкой')
+            btn2:SetText('Button with icon')
             Mantle.ui.btn(btn2, Material('icon16/accept.png'), 16)
 
             local btn3 = vgui.Create('DButton', scroll)
             btn3:Dock(TOP)
             btn3:DockMargin(10, 10, 10, 0)
-            btn3:SetText('Кнопка без градиента')
+            btn3:SetText('Button without gradient')
             Mantle.ui.btn(btn3, nil, nil, nil, nil, true)
 
             local btn4 = vgui.Create('DButton', scroll)
             btn4:Dock(TOP)
             btn4:DockMargin(10, 10, 10, 0)
-            btn4:SetText('Кнопка без ховера')
+            btn4:SetText('Button without hover')
             Mantle.ui.btn(btn4, nil, nil, nil, nil, nil, nil, true)
 
-            -- Тест слайдеров
-            local slider1 = Mantle.ui.slidebox(scroll, 'Слайдер (0-100)', 0, 100, 'net_graph', 0)
+            -- Test sliders
+            local slider1 = Mantle.ui.slidebox(scroll, 'Slider (0-100)', 0, 100, 'net_graph', 0)
             slider1:DockMargin(10, 20, 10, 0)
 
-            local slider2 = Mantle.ui.slidebox(scroll, 'Слайдер (0-1)', 0, 1, 'cl_drawhud', 2)
+            local slider2 = Mantle.ui.slidebox(scroll, 'Slider (0-1)', 0, 1, 'cl_drawhud', 2)
             slider2:DockMargin(10, 20, 10, 0)
 
-            -- Тест полей ввода
-            local entry1, entry_bg1 = Mantle.ui.desc_entry(scroll, 'Поле с заголовком', 'Введите текст...')
+            -- Test input fields
+            local entry1, entry_bg1 = Mantle.ui.desc_entry(scroll, 'Field with title', 'Enter text...')
             entry_bg1:DockMargin(10, 20, 10, 0)
 
-            local entry2, entry_bg2 = Mantle.ui.desc_entry(scroll, nil, 'Поле без заголовка')
+            local entry2, entry_bg2 = Mantle.ui.desc_entry(scroll, nil, 'Field without title')
             entry_bg2:DockMargin(10, 20, 10, 0)
 
-            -- Тест чекбоксов
-            local checkbox1, checkbox_btn1 = Mantle.ui.checkbox(scroll, 'Чекбокс с ConVar', 'cl_drawhud')
+            -- Test checkboxes
+            local checkbox1, checkbox_btn1 = Mantle.ui.checkbox(scroll, 'Checkbox with ConVar', 'cl_drawhud')
             checkbox1:DockMargin(10, 20, 10, 0)
 
-            local checkbox2, checkbox_btn2 = Mantle.ui.checkbox(scroll, 'Чекбокс без ConVar')
+            local checkbox2, checkbox_btn2 = Mantle.ui.checkbox(scroll, 'Checkbox without ConVar')
             checkbox2:DockMargin(10, 20, 10, 0)
 
-            -- Тест вкладок
+            -- Test tabs
             local panelTabs = vgui.Create('DPanel', scroll)
             panelTabs:Dock(TOP)
             panelTabs:SetTall(250)
@@ -822,35 +822,35 @@ local function CreateMenu()
             local tabs = Mantle.ui.panel_tabs(panelTabs)
             tabs:DockMargin(10, 20, 10, 0)
 
-            -- Добавляем вкладки с разными стилями
+            -- Add tabs with different styles
             local tab1 = vgui.Create('DPanel')
             tab1.Paint = function(_, w, h)
-                draw.SimpleText('Вкладка 1', 'Fated.20', w/2, h/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                draw.SimpleText('Tab 1', 'Fated.20', w/2, h/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
             end
-            tabs:AddTab('Вкладка 1', tab1, 'icon16/page_white.png')
+            tabs:AddTab('Tab 1', tab1, 'icon16/page_white.png')
 
             local tab2 = vgui.Create('DPanel')
             tab2.Paint = function(_, w, h)
-                draw.SimpleText('Вкладка 2', 'Fated.20', w/2, h/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                draw.SimpleText('Tab 2', 'Fated.20', w/2, h/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
             end
-            tabs:AddTab('Вкладка 2', tab2, 'icon16/page_white_edit.png', Color(100, 200, 100))
+            tabs:AddTab('Tab 2', tab2, 'icon16/page_white_edit.png', Color(100, 200, 100))
 
             local tab3 = vgui.Create('DPanel')
             tab3.Paint = function(_, w, h)
-                draw.SimpleText('Вкладка 3', 'Fated.20', w/2, h/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                draw.SimpleText('Tab 3', 'Fated.20', w/2, h/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
             end
-            tabs:AddTab('Вкладка 3', tab3, 'icon16/page_white_gear.png', nil, Color(200, 100, 100))
+            tabs:AddTab('Tab 3', tab3, 'icon16/page_white_gear.png', nil, Color(200, 100, 100))
 
-            tabs:ActiveTab('Вкладка 1')
+            tabs:ActiveTab('Tab 1')
         end
-        CreateCategory('Legacy Frame (не стоит использовать)', {
-            {'Mantle.ui.frame(object frame, string title, int w, int h, bool cls_btn, bool open_anim)', 'Оформление стандартное окна стилем Mantle'},
-            {'Mantle.ui.sp(object scroll)', 'Оформление панели прокрутки элементов'},
-            {'Mantle.ui.btn(object btn, mat icon, int icon_size, color col, int rad, bool off_grad, color hov, bool off_hov)', 'Оформление кнопки'},
-            {'Mantle.ui.slidebox(object parent, string label, int min_value, int max_value, string convar, int decimals)', 'Создание слайдера на родительном элементе'},
-            {'Mantle.ui.desc_entry(object parent, string title, string placeholder, bool off_title)', 'Создание поля ввода'},
-            {'Mantle.ui.checkbox(object parent, string text, string convar)', 'Создание чекбокса'},
-            {'Mantle.ui.panel_tabs(object parent)', 'Создание панели с вкладками. В дальнейшем использовать :AddTab() и :ActiveTab() для настройки'}
+        CreateCategory('Legacy Frame (not recommended to use)', {
+            {'Mantle.ui.frame(object frame, string title, int w, int h, bool cls_btn, bool open_anim)', 'Style standard window with Mantle style'},
+            {'Mantle.ui.sp(object scroll)', 'Style scroll panel for elements'},
+            {'Mantle.ui.btn(object btn, mat icon, int icon_size, color col, int rad, bool off_grad, color hov, bool off_hov)', 'Style button'},
+            {'Mantle.ui.slidebox(object parent, string label, int min_value, int max_value, string convar, int decimals)', 'Create slider on parent element'},
+            {'Mantle.ui.desc_entry(object parent, string title, string placeholder, bool off_title)', 'Create input field'},
+            {'Mantle.ui.checkbox(object parent, string text, string convar)', 'Create checkbox'},
+            {'Mantle.ui.panel_tabs(object parent)', 'Create panel with tabs. Later use :AddTab() and :ActiveTab() for configuration'}
         }, panel, btnFrame, true)
 
         return panel
@@ -860,44 +860,44 @@ local function CreateMenu()
 
     local function CreateSettings()
         local panel = vgui.Create('MantleScrollPanel')
-        CreateTabHeader('Настройки', 'Глобальные настройки Mantle: темы, эффекты и глубины элементов.', Material('icon16/cog.png'), panel)
+        CreateTabHeader('Settings', 'Global Mantle settings: themes, effects and element depths.', Material('icon16/cog.png'), panel)
 
         local menuWide = menuMantle:GetWide()
 
         local checkboxDepth = vgui.Create('MantleCheckBox', panel)
         checkboxDepth:Dock(TOP)
-        checkboxDepth:SetTxt('Глубины элементов')
+        checkboxDepth:SetTxt('Element depths')
         checkboxDepth:SetConvar('mantle_depth_ui')
 
         local checkboxBlur = vgui.Create('MantleCheckBox', panel)
         checkboxBlur:Dock(TOP)
         checkboxBlur:DockMargin(0, 6, 0, 0)
-        checkboxBlur:SetTxt('Размытие фона')
+        checkboxBlur:SetTxt('Background blur')
         checkboxBlur:SetConvar('mantle_blur')
 
         local categoryTheme = vgui.Create('MantleCategory', panel)
         categoryTheme:Dock(TOP)
         categoryTheme:DockMargin(0, 6, 0, 0)
-        categoryTheme:SetText('Изменение цветовой темы')
+        categoryTheme:SetText('Change color theme')
         categoryTheme:SetActive(true)
 
         local comboboxTheme = vgui.Create('MantleComboBox')
         comboboxTheme:Dock(TOP)
-        comboboxTheme:SetPlaceholder('Выберите тему интерфейса')
-        comboboxTheme:AddChoice('Тёмная (dark)', 'dark')
-        comboboxTheme:AddChoice('Тёмная монотонная (dark_mono)', 'dark_mono')
-        comboboxTheme:AddChoice('Светлая (light)', 'light')
-        comboboxTheme:AddChoice('Синяя (blue)', 'blue')
-        comboboxTheme:AddChoice('Красная (red)', 'red')
-        comboboxTheme:AddChoice('Зелёная (green)', 'green')
-        comboboxTheme:AddChoice('Оранжевая (orange)', 'orange')
-        comboboxTheme:AddChoice('Фиолетовый (purple)', 'purple')
-        comboboxTheme:AddChoice('Кофейная (coffee)', 'coffee')
-        comboboxTheme:AddChoice('Ледяная (ice)', 'ice')
-        comboboxTheme:AddChoice('Винная (wine)', 'wine')
-        comboboxTheme:AddChoice('Фиалковая (violet)', 'violet')
-        comboboxTheme:AddChoice('Моховая (moss)', 'moss')
-        comboboxTheme:AddChoice('Коралловая (coral)', 'coral')
+        comboboxTheme:SetPlaceholder('Select interface theme')
+        comboboxTheme:AddChoice('Dark (dark)', 'dark')
+        comboboxTheme:AddChoice('Dark monotone (dark_mono)', 'dark_mono')
+        comboboxTheme:AddChoice('Light (light)', 'light')
+        comboboxTheme:AddChoice('Blue (blue)', 'blue')
+        comboboxTheme:AddChoice('Red (red)', 'red')
+        comboboxTheme:AddChoice('Green (green)', 'green')
+        comboboxTheme:AddChoice('Orange (orange)', 'orange')
+        comboboxTheme:AddChoice('Purple (purple)', 'purple')
+        comboboxTheme:AddChoice('Coffee (coffee)', 'coffee')
+        comboboxTheme:AddChoice('Ice (ice)', 'ice')
+        comboboxTheme:AddChoice('Wine (wine)', 'wine')
+        comboboxTheme:AddChoice('Violet (violet)', 'violet')
+        comboboxTheme:AddChoice('Moss (moss)', 'moss')
+        comboboxTheme:AddChoice('Coral (coral)', 'coral')
         comboboxTheme.OnSelect = function(_, _, data)
             RunConsoleCommand('mantle_theme', data)
         end
@@ -927,7 +927,7 @@ local function CreateMenu()
         return panel
     end
 
-    tabs:AddTab('Настройки', CreateSettings(), Material('icon16/cog.png'))
+    tabs:AddTab('Settings', CreateSettings(), Material('icon16/cog.png'))
 end
 
 concommand.Add('mantle_menu', CreateMenu)
